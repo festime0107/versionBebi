@@ -11,16 +11,14 @@ export default function TVMode({ items, onExit }) {
 
   // autoplay + audio
   useEffect(() => {
-    if (!playing) return;
+  if (!playing || !current?.audio) return;
 
-    playAudio(current.audio);
-
-    const timer = setTimeout(() => {
-      setIndex((prev) => (prev + 1) % items.length);
-    }, 5000);
-
-    return () => clearTimeout(timer);
-  }, [index, playing]);
+  playAudio(current.audio, () => {
+  setTimeout(() => {
+    setIndex((prev) => (prev + 1) % items.length);
+  }, 800); // 0.8 sek pushim
+});
+}, [index, playing, current?.audio, items.length]);
 
   // keyboard controls (TV remote / PC)
   useEffect(() => {

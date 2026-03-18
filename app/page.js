@@ -1,5 +1,5 @@
 'use client';
-
+import TVMode from '../components/TVMode';
 import { useRef, useState } from 'react';
 import MenuCard from '../components/MenuCard';
 import AudioCard from '../components/AudioCard';
@@ -46,7 +46,44 @@ const sleepItems = [
   { emoji: '⭐', label: 'Sure El-Ihlas', audio: '/audio/gjume/ikhlas.mp3' },
   { emoji: '💫', label: 'Sure En-Nas', audio: '/audio/gjume/nas.mp3' },
 ];
-
+const alphabet = [
+  { emoji: '🐻', label: 'A - Ariu', audio: '/audio/alfabeti/a-ariu.mp3' },
+  { emoji: '🍞', label: 'B - Buka', audio: '/audio/alfabeti/b-buka.mp3' },
+  { emoji: '🐐', label: 'C - Cjapi', audio: '/audio/alfabeti/c-cjapi.mp3' },
+  { emoji: '👜', label: 'Ç - Çanta', audio: '/audio/alfabeti/c-çanta.mp3' },
+  { emoji: '🍐', label: 'D - Dardha', audio: '/audio/alfabeti/d-dardha.mp3' },
+  { emoji: '🦷', label: 'Dh - Dhëmbi', audio: '/audio/alfabeti/dh-dhembi.mp3' },
+  { emoji: '🦅', label: 'E - Shqiponja', audio: '/audio/alfabeti/e-shqiponja.mp3' },
+  { emoji: '🌿', label: 'Ë - Ëmbëlsira', audio: '/audio/alfabeti/ë-embelsira.mp3' },
+  { emoji: '🚩', label: 'F - Flamuri', audio: '/audio/alfabeti/f-flamuri.mp3' },
+  { emoji: '👧', label: 'G - Goca', audio: '/audio/alfabeti/g-goca.mp3' },
+  { emoji: '🦵', label: 'Gj - Gjuri', audio: '/audio/alfabeti/gj-gjuri.mp3' },
+  { emoji: '🌙', label: 'H - Hëna', audio: '/audio/alfabeti/h-hena.mp3' },
+  { emoji: '⭐', label: 'I - Ylli', audio: '/audio/alfabeti/i-ylli.mp3' },
+  { emoji: '🧥', label: 'J - Xhaketa', audio: '/audio/alfabeti/j-xhaketa.mp3' },
+  { emoji: '🐎', label: 'K - Kali', audio: '/audio/alfabeti/k-kali.mp3' },
+  { emoji: '🦁', label: 'L - Luani', audio: '/audio/alfabeti/l-luani.mp3' },
+  { emoji: '🌸', label: 'Ll - Lulja', audio: '/audio/alfabeti/ll-lulja.mp3' },
+  { emoji: '🍎', label: 'M - Molla', audio: '/audio/alfabeti/m-molla.mp3' },
+  { emoji: '👃', label: 'N - Hunda', audio: '/audio/alfabeti/n-hunda.mp3' },
+  { emoji: '🧶', label: 'Nj - Një top', audio: '/audio/alfabeti/nj-nje-top.mp3' },
+  { emoji: '🪿', label: 'O - Rosa', audio: '/audio/alfabeti/o-rosa.mp3' },
+  { emoji: '🐝', label: 'P - Bleta', audio: '/audio/alfabeti/p-bleta.mp3' },
+  { emoji: '❓', label: 'Q - Qeni', audio: '/audio/alfabeti/q-qeni.mp3' },
+  { emoji: '☁️', label: 'R - Reja', audio: '/audio/alfabeti/r-reja.mp3' },
+  { emoji: '☀️', label: 'Rr - Rruga', audio: '/audio/alfabeti/rr-rruga.mp3' },
+  { emoji: '🐟', label: 'S - Peshku', audio: '/audio/alfabeti/s-peshku.mp3' },
+  { emoji: '🧴', label: 'Sh - Shishja', audio: '/audio/alfabeti/sh-shishja.mp3' },
+  { emoji: '🪑', label: 'T - Tavolina', audio: '/audio/alfabeti/t-tavolina.mp3' },
+  { emoji: '🍽️', label: 'Th - Thika', audio: '/audio/alfabeti/th-thika.mp3' },
+  { emoji: '🍇', label: 'U - Rrushi', audio: '/audio/alfabeti/u-rrushi.mp3' },
+  { emoji: '🥚', label: 'V - Veza', audio: '/audio/alfabeti/v-veza.mp3' },
+  { emoji: '👂', label: 'X - Veshi', audio: '/audio/alfabeti/x-veshi.mp3' },
+  { emoji: '📦', label: 'Xh - Xhami', audio: '/audio/alfabeti/xh-xhami.mp3' },
+  { emoji: '🪀', label: 'Y - Yoyo', audio: '/audio/alfabeti/y-yoyo.mp3' },
+  { emoji: '⚫', label: 'Z - Zebra', audio: '/audio/alfabeti/z-zebra.mp3' },
+  { emoji: '🧃', label: 'Zh - Zhaba', audio: '/audio/alfabeti/zh-zhaba.mp3' },
+];
 const colors = [
   { emoji: '🔴', label: 'E kuqe', audio: '/audio/ngjyra/e-kuqe.mp3' },
   { emoji: '🔵', label: 'Blu', audio: '/audio/ngjyra/blu.mp3' },
@@ -103,6 +140,8 @@ const transport = [
   { emoji: '🚢', label: 'Anija', audio: '/audio/transport/anija.mp3' },
 ];
 
+
+
 const sections = {
   kafshet: {
     title: 'Kafshët',
@@ -114,6 +153,12 @@ const sections = {
     description: 'Prek numrin për ta dëgjuar.',
     items: numbers,
   },
+   alfabeti: {
+    title: 'Alfabeti Shqip',
+    description: 'Prek shkronjën për ta dëgjuar me shembull.',
+    items: alphabet,
+  },
+
   gjume: {
     title: 'Gjumë',
     description: 'Sure të qeta për bebe.',
@@ -149,12 +194,12 @@ const sections = {
     description: 'Mëso mjetet e transportit.',
     items: transport,
   },
+   
 };
-
 export default function Page() {
   const [activeSection, setActiveSection] = useState('kafshet');
   const sectionRef = useRef(null);
-
+const [tvMode, setTvMode] = useState(false);
   const changeSection = (section) => {
     setActiveSection(section);
 
@@ -166,7 +211,18 @@ export default function Page() {
     }, 100);
   };
 
+  
   const current = sections[activeSection];
+
+// 👇 VENDOSE KËTU
+if (tvMode) {
+  return (
+    <TVMode
+      items={sections[activeSection].items}
+      onExit={() => setTvMode(false)}
+    />
+  );
+}
 
   return (
     <main className="pageWrapper">
@@ -175,6 +231,21 @@ export default function Page() {
         <p className="subtitle">
           Aplikacion edukativ për bebe me audio në shqip
         </p>
+        <button
+  onClick={() => setTvMode(true)}
+  style={{
+    padding: '12px',
+    borderRadius: '12px',
+    fontSize: '16px',
+    marginTop: '10px',
+    background: '#ddd6fe',
+    border: 'none',
+    fontWeight: '700',
+    cursor: 'pointer'
+  }}
+>
+  📺 TV Mode
+</button>
       </div>
 
       <div className="stickyMenuWrapper">
@@ -242,6 +313,12 @@ export default function Page() {
             label="Transporti"
             active={activeSection === 'transport'}
             onClick={() => changeSection('transport')}
+          />
+          <MenuCard
+            emoji="🔤"
+            label="Alfabeti"
+            active={activeSection === 'alfabeti'}
+            onClick={() => changeSection('alfabeti')}
           />
         </div>
       </div>

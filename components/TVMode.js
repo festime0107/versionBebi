@@ -14,10 +14,9 @@ export default function TVMode({ items, onExit }) {
   if (!playing || !current?.audio) return;
 
   playAudio(current.audio, () => {
-  setTimeout(() => {
+    // kur mbaron audio
     setIndex((prev) => (prev + 1) % items.length);
-  }, 800); // 0.8 sek pushim
-});
+  });
 }, [index, playing, current?.audio, items.length]);
 
   // keyboard controls (TV remote / PC)

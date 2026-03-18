@@ -227,7 +227,7 @@ if (tvMode) {
   return (
     <main className="pageWrapper">
       <div className="headerBox">
-        <h1 className="mainTitle">Bebi Musliman</h1>
+        <h1 className="mainTitle">Bebi FO</h1>
         <p className="subtitle">
           Aplikacion edukativ për bebe me audio në shqip
         </p>

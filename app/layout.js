@@ -1,6 +1,12 @@
 export const metadata = {
-  title: 'Bebi Musliman',
+  title: 'Bebi FO',
   description: 'Aplikacion edukativ për bebe muslimane',
+  manifest: '/manifest.json',
+  themeColor: '#0f766e',
+  icons: {
+    icon: '/icons/icon-192.png',
+    apple: '/icons/icon-192.png',
+  },
 };
 
 import './globals.css';

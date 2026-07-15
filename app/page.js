@@ -6,7 +6,7 @@ import AudioCard from '../components/AudioCard';
 import StopAudioButton from '../components/StopAudioButton';
 
 const animals = [
-  { emoji: '🐱', label: 'Macja', audio: '/audio/kafshe/macja.mp3' },
+  { emoji: '🐱', label: 'Macja', audio: '/audio/kafshe/macja' },
   { emoji: '🐶', label: 'Qeni', audio: '/audio/kafshe/qeni.mp3' },
   { emoji: '🐻', label: 'Ariu', audio: '/audio/kafshe/ariu.mp3' },
   { emoji: '🐰', label: 'Lepuri', audio: '/audio/kafshe/lepuri.mp3' },
